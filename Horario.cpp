@@ -4,12 +4,12 @@
  *	
  *	IIE-344-1 ESTRUCURA DE DATOS Y ALGORITMOS
  *	
- *	Tarea 1
+ *	Tarea 2
  *
  *	Autor 1: Pedro Paulo Enrique Muñoz Gatica 
  *	Autor 2: Benjamin Eduardo Lagos Roa
  *
- *	Fecha: 08/12/2020
+ *	Fecha: 10/01/2020
  *
  * 	Proyecto Horario Personal: HORARIO VIRTUAL
  *
@@ -29,6 +29,16 @@
 //Estructuras Añadidas en listaStruct.h
 
 int seleccion_ramo(int cant_ramos, Ramo Ramos[8]);
+/*
+* Nombre de la función: seleccion_ramo.
+* Tipo de función: int.
+* Parámetros: “cant_ramos” de tipo Clase.
+*	      “Ramos[8]” de tipo Ramos.
+* Dato de retorno: “a” de tipo int.
+* Descripción de la función: La función seleccion_ramo()
+* pide dos parámetros para dar una cifra numerica a la seleccion
+* del ramo que servirá para futuras operaciones.
+*/
 
 int main()
 {
@@ -178,7 +188,7 @@ int main()
 							cont++;
 
 						} while (b == 2); //Este do while es en el caso de querer editar el horario ingresado de la ultima clase.
-						
+
 						//se insertan los datos en la lista
 						inserta_Horario(Horarios_clases[i][j], Horarios_Ordenados[i], b);
 					}
@@ -226,7 +236,7 @@ int main()
 					{
 						continue;
 					}
-					
+
 					fprintf(arch, "[HORARIOS] %s:\n", dia_semana[k]);
 					//se crea una cadena de listas por dia para ingresar los datos ordenados
 					nodo_clase *actual[7] = {new nodo_clase(), new nodo_clase(), new nodo_clase(), new nodo_clase(), new nodo_clase(), new nodo_clase(), new nodo_clase()};
@@ -238,9 +248,8 @@ int main()
 						actual[k] = actual[k]->next;
 					}
 					fprintf(arch, "[EVENTOS] %s:\n", dia_semana[k]);
-					
+
 					fprintf(arch, "\n----------------------------------------------\n");
-					
 				}
 
 				fclose(arch);
@@ -427,7 +436,7 @@ int main()
 			strcat(indicador1, dos_puntos);
 			{
 				FILE *f = fopen(semana[Semana_evento - 1], "r+");
-				
+
 				//dentro del archivo se busca el lugar donde se quiereempezar a contar la cantidad de archivos
 				while (!feof(f))
 				{
@@ -438,7 +447,7 @@ int main()
 					}
 				}
 				//con cont3 se cuentan la cantidad de lineas que hay desde el lugar anteriormente buscado hasta el siguente dia de evento
-			
+
 				while (!feof(f))
 				{
 					fgets(aux1, 150, f);
@@ -460,8 +469,8 @@ int main()
 					{
 						for (int p = 0; p < cantidad_eventos[Dia_evento - 1]; p++)
 						{
-							fscanf(f, " [%d] (%d:%d) %[^\n]\n",&posicion, &Eventos[Semana_evento -1][Dia_evento -1 ][p].hora_evento, &Eventos[Semana_evento -1][Dia_evento -1 ][p].minuto_evento, &Eventos[Semana_evento -1][Dia_evento -1 ][p].descripcion);
-							
+							fscanf(f, " [%d] (%d:%d) %[^\n]\n", &posicion, &Eventos[Semana_evento - 1][Dia_evento - 1][p].hora_evento, &Eventos[Semana_evento - 1][Dia_evento - 1][p].minuto_evento, &Eventos[Semana_evento - 1][Dia_evento - 1][p].descripcion);
+
 							inserta_Evento(Eventos[Semana_evento - 1][Dia_evento - 1][p], Eventos_Ordenados[Dia_evento - 1]);
 						}
 						break;
@@ -475,15 +484,15 @@ int main()
 			{
 				d = 0;
 				if ((cantidad_eventos[Dia_evento - 1]) > 0)
-							{ //Se muestra por pantalla los horarios previamente ingresados para una mejor compresion de como se guardara el archivo.
-								printf("\n\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
-								//se imprimen los datos de los horarios ingresados con anterioridad
-								imprimir_Eventos(Eventos[Semana_evento - 1][Dia_evento - 1][cantidad_eventos[Dia_evento - 1]], Eventos_Ordenados[Dia_evento - 1]);
-							}
-							if (cantidad_eventos[Dia_evento - 1] > 0)
-							{
-								printf("\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-							}
+				{ //Se muestra por pantalla los horarios previamente ingresados para una mejor compresion de como se guardara el archivo.
+					printf("\n\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
+					//se imprimen los datos de los horarios ingresados con anterioridad
+					imprimir_Eventos(Eventos[Semana_evento - 1][Dia_evento - 1][cantidad_eventos[Dia_evento - 1]], Eventos_Ordenados[Dia_evento - 1]);
+				}
+				if (cantidad_eventos[Dia_evento - 1] > 0)
+				{
+					printf("\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+				}
 
 				printf("\nIngrese hora del evento en formato (HH:MM): ");
 				scanf("%d:%d", &Eventos[Semana_evento - 1][Dia_evento - 1][cantidad_eventos[Dia_evento - 1] + 1].hora_evento, &Eventos[Semana_evento - 1][Dia_evento - 1][cantidad_eventos[Dia_evento - 1] + 1].minuto_evento);
@@ -532,7 +541,7 @@ int main()
 				fflush(stdin);
 				scanf("%[^\n]", Eventos[Semana_evento - 1][Dia_evento - 1][cantidad_eventos[Dia_evento - 1] + 1].descripcion);
 				system("cls");
-				
+
 				//se añade el evento recien ingresado a la lista
 				inserta_Evento(Eventos[Semana_evento - 1][Dia_evento - 1][cantidad_eventos[Dia_evento - 1] + 1], Eventos_Ordenados[Dia_evento - 1]);
 
@@ -580,7 +589,7 @@ int main()
 					{
 						for (int m = 0; actual[Dia_evento - 1] != NULL; m++)
 						{
-							
+
 							fprintf(f1, " [%d] (%d:%d) %s\n", m + 1, actual[Dia_evento - 1]->dato.hora_evento, actual[Dia_evento - 1]->dato.minuto_evento, actual[Dia_evento - 1]->dato.descripcion);
 							actual[Dia_evento - 1] = actual[Dia_evento - 1]->next;
 						}
@@ -593,13 +602,12 @@ int main()
 				}
 				//se borra a la lista para en un futuro poder ingresar otro evento sin que hayan problemas
 				for (int i = 0; i <= 6; i++)
-			{
-				while (Eventos_Ordenados[i] != NULL)
 				{
-					eliminar_Lista_Eventos(i, Eventos_Ordenados[i], Eventos[Semana_evento - 1][i]);
+					while (Eventos_Ordenados[i] != NULL)
+					{
+						eliminar_Lista_Eventos(i, Eventos_Ordenados[i], Eventos[Semana_evento - 1][i]);
+					}
 				}
-			}
-
 
 				fclose(f1);
 				fclose(f);

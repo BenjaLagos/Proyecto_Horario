@@ -106,16 +106,13 @@ void imprimir_Eventos(Evento p, nodo_evento *&lista)
 	actual = lista;
 	while (actual != NULL)
 	{
-						for (int m = 0; actual != NULL; m++)
-						{
-							printf(" [%d] (%d:%d) %s\n", m + 1, actual->dato.hora_evento, actual->dato.minuto_evento, actual->dato.descripcion);
-							actual = actual->next;
-						}
-					}
-	
+		for (int m = 0; actual != NULL; m++)
+		{
+			printf(" [%d] (%d:%d) %s\n", m + 1, actual->dato.hora_evento, actual->dato.minuto_evento, actual->dato.descripcion);
+			actual = actual->next;
+		}
+	}
 }
-
-
 
 void eliminar_Lista(int i, nodo_clase *&lista, Clase z[5])
 {
